@@ -27,7 +27,7 @@ body {
 }
 
 /* Layout */
-.grid-container {
+/* .grid-container {
   display: grid;
   grid-template-areas:
     'header'
@@ -36,7 +36,7 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
   height: 100%;
-}
+} */
 header {
   grid-area: header;
   background-color: #203040;
@@ -375,4 +375,9 @@ img.large {
 }
 .pagination a.active {
   font-weight: bold;
+}
+
+.toolbar img {
+  height: 30px;
+  width: auto;
 }

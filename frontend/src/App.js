@@ -28,6 +28,7 @@ import { listProductCategories } from './actions/productActions';
 import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
 import MapScreen from './screens/MapScreen';
+import Navegacion from './components/Navegacion';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -65,14 +66,14 @@ function App() {
               amazona
             </Link>
           </div>
-          <div>
+          {/* <div>
             <Route
               render={({ history }) => (
                 <SearchBox history={history}></SearchBox>
               )}
             ></Route>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <Link to="/cart">
               Cart
               {cartItems.length > 0 && (
@@ -137,7 +138,7 @@ function App() {
                 </ul>
               </div>
             )}
-          </div>
+          </div> */}
         </header>
         <aside className={sidebarIsOpen ? 'open' : ''}>
           <ul className="categories">
@@ -170,6 +171,7 @@ function App() {
           </ul>
         </aside>
         <main>
+          <Navegacion/>
           <Route path="/seller/:id" component={SellerScreen}></Route>
           <Route path="/cart/:id?" component={CartScreen}></Route>
           <Route path="/product/:id" component={ProductScreen} exact></Route>
