@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { Carousel } from 'react-responsive-carousel';
-import Product from '../components/Product';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import { useDispatch, useSelector } from 'react-redux';
-import { listProducts } from '../actions/productActions';
-import { listTopSellers } from '../actions/userActions';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import Product from "../components/Product";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../actions/productActions";
+import { listTopSellers } from "../actions/userActions";
+import { Link, Route } from "react-router-dom";
+import SearchBox from "../components/SearchBox";
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
@@ -27,34 +28,18 @@ export default function HomeScreen() {
   }, [dispatch]);
   return (
     <div>
-      <h2>Las Más Vistas</h2>
-      {loadingSellers ? (
-        <LoadingBox></LoadingBox>
-      ) : errorSellers ? (
-        <MessageBox variant="danger">{errorSellers}</MessageBox>
-      ) : (
-        <>
-          {sellers.length === 0 && <MessageBox>No Seller Found</MessageBox>}
-          <Carousel showArrows autoPlay showThumbs={false}>
-            {sellers.map((seller) => (
-              <div key={seller._id}>
-                <Link to={`/seller/${seller._id}`}>
-                  <img src={seller.seller.logo} alt={seller.seller.name} />
-                  <p className="legend">{seller.seller.name}</p>
-                </Link>
-              </div>
-            ))}
-          </Carousel>
-        </>
-      )}
-      <h2>Productos Destacados</h2>
+     <div className="offset-md-4 p-2">
+        <Route
+          render={({ history }) => <SearchBox history={history}></SearchBox>}
+        ></Route>
+      </div>      
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <>
-          {products.length === 0 && <MessageBox>No existen Películas</MessageBox>}
+          {products.length === 0 && <MessageBox>No Existen Peliculas</MessageBox>}
           <div className="row center">
             {products.map((product) => (
               <Product key={product._id} product={product}></Product>

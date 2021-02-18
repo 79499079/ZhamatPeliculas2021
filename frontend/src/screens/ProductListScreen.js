@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import {
   createProduct,
   deleteProduct,
   listProducts,
-} from '../actions/productActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
+} from "../actions/productActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
 import {
   PRODUCT_CREATE_RESET,
   PRODUCT_DELETE_RESET,
-} from '../constants/productConstants';
+} from "../constants/productConstants";
 
 export default function ProductListScreen(props) {
   const { pageNumber = 1 } = useParams();
 
-  const sellerMode = props.match.path.indexOf('/seller') >= 0;
+  const sellerMode = props.match.path.indexOf("/seller") >= 0;
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
@@ -46,7 +46,7 @@ export default function ProductListScreen(props) {
       dispatch({ type: PRODUCT_DELETE_RESET });
     }
     dispatch(
-      listProducts({ seller: sellerMode ? userInfo._id : '', pageNumber })
+      listProducts({ seller: sellerMode ? userInfo._id : "", pageNumber })
     );
   }, [
     createdProduct,
@@ -60,7 +60,7 @@ export default function ProductListScreen(props) {
   ]);
 
   const deleteHandler = (product) => {
-    if (window.confirm('Are you sure to delete?')) {
+    if (window.confirm("Are you sure to delete?")) {
       dispatch(deleteProduct(product._id));
     }
   };
@@ -68,12 +68,18 @@ export default function ProductListScreen(props) {
     dispatch(createProduct());
   };
   return (
-    <div>
+    <div className="Container">
       <div className="row">
-        <h1>Products</h1>
-        <button type="button" className="primary" onClick={createHandler}>
-          Create Product
-        </button>
+        <div className="col-sm text-right">
+          <h3>Peliculas</h3>
+        </div>
+        <div className="col-sm text-right">
+          <Link to="/ingresaPelicula">
+            <button type="button" className="btn btn-primary">
+              Crear Pelicula
+            </button>
+          </Link>
+        </div>
       </div>
 
       {loadingDelete && <LoadingBox></LoadingBox>}
@@ -91,11 +97,11 @@ export default function ProductListScreen(props) {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
-                <th>BRAND</th>
-                <th>ACTIONS</th>
+                <th>TITULO</th>
+                <th>PRECIO</th>
+                <th>GENERO</th>
+                <th>IDIOMA</th>
+                <th>ACCIÓN</th>
               </tr>
             </thead>
             <tbody>
@@ -121,21 +127,26 @@ export default function ProductListScreen(props) {
                       className="small"
                       onClick={() => deleteHandler(product)}
                     >
-                      Delete
+                      Borrar
                     </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <div className="row center pagination">
+
+          <div className="text-center pagina">
+          {products.length === 0 && <MessageBox>No Existen Peliculas</MessageBox>}
             {[...Array(pages).keys()].map((x) => (
               <Link
-                className={x + 1 === page ? 'active' : ''}
+                className={x + 1 === page ? "active" : ""}
                 key={x + 1}
                 to={`/productlist/pageNumber/${x + 1}`}
               >
-                {x + 1}
+                Páginas
+                <span className="badge">
+                  <h5 className="blanco">{x + 1}</h5>
+                </span>
               </Link>
             ))}
           </div>

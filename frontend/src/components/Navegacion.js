@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Link, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signout } from "../actions/userActions";
 import { listProductCategories } from "../actions/productActions";
-import SearchBox from "./SearchBox";
+/* import SearchBox from "./SearchBox"; */
 
 export default function Navegacion() {
   const cart = useSelector((state) => state.cart);
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  /*  const [sidebarIsOpen, setSidebarIsOpen] = useState(false); */
   const { cartItems } = cart;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
@@ -16,12 +16,12 @@ export default function Navegacion() {
     dispatch(signout());
   };
 
-  const productCategoryList = useSelector((state) => state.productCategoryList);
+ /*  const productCategoryList = useSelector((state) => state.productCategoryList);
   const {
     loading: loadingCategories,
     error: errorCategories,
     categories,
-  } = productCategoryList;
+  } = productCategoryList; */
   useEffect(() => {
     dispatch(listProductCategories());
   }, [dispatch]);
@@ -38,12 +38,19 @@ export default function Navegacion() {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div>        
+      <div>
         <Link className="navbar-brand" to="/">
           Peliculas Zhamat
         </Link>
       </div>
       <div className="collapse navbar-collapse" id="navbarText">
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <Link className="nav-link" to="/">
+              Inicio <span className="sr-only">(current)</span>
+            </Link>
+          </li>
+        </ul>
         <ul className="navbar-nav ml-auto">
           <div className="toolbar">
             <li className="nav-item">
@@ -59,15 +66,6 @@ export default function Navegacion() {
             </li>
           </div>
         </ul>
-
-        <ul className="navbar-nav ml-auto">
-        <Route
-              render={({ history }) => (
-                <SearchBox history={history}></SearchBox>
-              )}
-            ></Route>
-        </ul>
-
         <ul className="navbar-nav ml-auto">
           <li className="nav-item dropdown">
             {userInfo && userInfo.isAdmin && (
@@ -111,7 +109,7 @@ export default function Navegacion() {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  Seller
+                  Vendedor
                 </div>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <Link className="dropdown-item" to="/productlist/seller">

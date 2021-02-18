@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
-import { signout } from './actions/userActions';
+import React, { useEffect/* , useState */ } from 'react';
+import { useDispatch/* , useSelector */ } from 'react-redux';
+import { BrowserRouter, /* Link, */ Route } from 'react-router-dom';
+/* import { signout } from './actions/userActions'; */
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
 import CartScreen from './screens/CartScreen';
@@ -22,39 +22,39 @@ import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import SellerRoute from './components/SellerRoute';
 import SellerScreen from './screens/SellerScreen';
-import SearchBox from './components/SearchBox';
+/* import SearchBox from './components/SearchBox'; */
 import SearchScreen from './screens/SearchScreen';
 import { listProductCategories } from './actions/productActions';
-import LoadingBox from './components/LoadingBox';
-import MessageBox from './components/MessageBox';
+/* import LoadingBox from './components/LoadingBox';
+import MessageBox from './components/MessageBox'; */
 import MapScreen from './screens/MapScreen';
 import Navegacion from './components/Navegacion';
+import IngresaPeliculaScreen from './screens/IngresaPeliculaScreen'
 
 function App() {
-  const cart = useSelector((state) => state.cart);
+  /* const cart = useSelector((state) => state.cart);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const { cartItems } = cart;
   const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
-  const dispatch = useDispatch();
+  const { userInfo } = userSignin;  
   const signoutHandler = () => {
     dispatch(signout());
-  };
-
-  const productCategoryList = useSelector((state) => state.productCategoryList);
+  }; */
+  const dispatch = useDispatch();
+ /*  const productCategoryList = useSelector((state) => state.productCategoryList);
   const {
     loading: loadingCategories,
     error: errorCategories,
     categories,
-  } = productCategoryList;
+  } = productCategoryList; */
   useEffect(() => {
     dispatch(listProductCategories());
   }, [dispatch]);
   return (
     <BrowserRouter>
-      <div className="grid-container">
-        <header className="row">
-          <div>
+      
+        {/* <header className="row">
+         <div>
             <button
               type="button"
               className="open-sidebar"
@@ -65,15 +65,15 @@ function App() {
             <Link className="brand" to="/">
               amazona
             </Link>
-          </div>
-          {/* <div>
+          </div> 
+           <div>
             <Route
               render={({ history }) => (
                 <SearchBox history={history}></SearchBox>
               )}
             ></Route>
-          </div> */}
-          {/* <div>
+          </div>
+          <div>
             <Link to="/cart">
               Cart
               {cartItems.length > 0 && (
@@ -138,7 +138,7 @@ function App() {
                 </ul>
               </div>
             )}
-          </div> */}
+          </div>
         </header>
         <aside className={sidebarIsOpen ? 'open' : ''}>
           <ul className="categories">
@@ -169,7 +169,7 @@ function App() {
               ))
             )}
           </ul>
-        </aside>
+        </aside> */}
         <main>
           <Navegacion/>
           <Route path="/seller/:id" component={SellerScreen}></Route>
@@ -187,6 +187,7 @@ function App() {
           <Route path="/placeorder" component={PlaceOrderScreen}></Route>
           <Route path="/order/:id" component={OrderScreen}></Route>
           <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
+          <Route path="/ingresaPelicula" component={IngresaPeliculaScreen}></Route>
           <Route
             path="/search/name/:name?"
             component={SearchScreen}
@@ -243,8 +244,12 @@ function App() {
 
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
-        <footer className="row center">All right reserved</footer>
-      </div>
+        <footer>
+          <div className="text-center">
+            <h5>Copy Right - 2021</h5>
+          </div>
+        </footer>
+     
     </BrowserRouter>
   );
 }

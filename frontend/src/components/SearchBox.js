@@ -7,18 +7,18 @@ export default function SearchBox(props) {
     props.history.push(`/search/name/${name}`);
   };
   return (
-    <form class="form-inline my-2 my-lg-0" onSubmit={submitHandler}>
+    <form className="form-inline my-2 my-lg-0" onSubmit={submitHandler}>
       <input
-        class="form-control mr-sm-2"
+        className="form-control mr-sm-2"
         type="search"
-        placeholder="Buscar"
+        placeholder="Buscar Pelicula"
         name="q"
         id="q"
         onChange={(e) => setName(e.target.value)}
         aria-label="Search"
       ></input>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        Buscar pelicula
+      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Buscar
       </button>
     </form>
   );
