@@ -161,14 +161,14 @@ export default function ProductScreen(props) {
                   </li>
                   <li>
                     {product.reviews.map((review) => (
-                      <li key={review._id}>
+                      <div key={review._id}>
                         <div className="row justify-content-between">
                           <strong>{review.name}</strong> {" "}
                           <Rating rating={review.rating} caption=" "></Rating>
                           <p>{review.createdAt.substring(0, 10)}</p>
                         </div>                        
                           <p>{review.comment}</p>
-                      </li>
+                      </div>
                     ))}
                   </li>
                 </ul>
