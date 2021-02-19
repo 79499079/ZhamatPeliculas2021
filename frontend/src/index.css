@@ -15,10 +15,16 @@ body {
     #000428
   ) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-/* #root {
+
+li {
+  padding: 4px;
+  list-style: none;
+}
+
+#root {
   height: 100%;
 }
- */
+
 /* Layout */
 /* .grid-container {
   display: grid;

@@ -176,7 +176,7 @@ productRouter.post(
       if (product.reviews.find((x) => x.name === req.user.name)) {
         return res
           .status(400)
-          .send({ message: 'You already submitted a review' });
+          .send({ message: 'Ya enviaste una crítica' });
       }
       const review = {
         name: req.user.name,
