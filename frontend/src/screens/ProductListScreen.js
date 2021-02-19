@@ -60,7 +60,7 @@ export default function ProductListScreen(props) {
   ]);
 
   const deleteHandler = (product) => {
-    if (window.confirm("Are you sure to delete?")) {
+    if (window.confirm("Está seguro de Borrarlo?")) {
       dispatch(deleteProduct(product._id));
     }
   };
@@ -76,7 +76,7 @@ export default function ProductListScreen(props) {
         <div className="col-sm text-right">
           <Link to="/ingresaPelicula">
             <button type="button" className="btn btn-primary">
-              Crear Pelicula
+              Crear Peliculas
             </button>
           </Link>
         </div>
@@ -137,13 +137,13 @@ export default function ProductListScreen(props) {
 
           <div className="text-center pagina">
           {products.length === 0 && <MessageBox>No Existen Peliculas</MessageBox>}
+          Páginas {" "}
             {[...Array(pages).keys()].map((x) => (
               <Link
                 className={x + 1 === page ? "active" : ""}
                 key={x + 1}
                 to={`/productlist/pageNumber/${x + 1}`}
-              >
-                Páginas
+              >               
                 <span className="badge">
                   <h5 className="blanco">{x + 1}</h5>
                 </span>

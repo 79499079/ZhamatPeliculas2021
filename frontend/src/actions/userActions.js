@@ -178,4 +178,4 @@ export const listTopSellers = () => async (dispatch) => {
         : error.message;
     dispatch({ type: USER_TOPSELLERS_LIST_FAIL, payload: message });
   }
-};
+}; 

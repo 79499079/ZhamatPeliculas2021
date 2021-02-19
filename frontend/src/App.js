@@ -224,6 +224,11 @@ function App() {
             exact
           ></AdminRoute>
           <AdminRoute
+            path="/productlista/pageNumber/:pageNumber"
+            component={HomeScreen}
+            exact
+          ></AdminRoute>
+          <AdminRoute
             path="/orderlist"
             component={OrderListScreen}
             exact

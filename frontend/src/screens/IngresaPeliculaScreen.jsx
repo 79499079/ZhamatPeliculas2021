@@ -24,9 +24,9 @@ export default function RegistraUserScreen(props) {
   const { pelicula, loading, error } = peliculaRegister;
 
  const dispatch = useDispatch();   
-  const submitHandler = (e) => {
-    e.preventDefault();     
+  const submitHandler = (e) => {    
       dispatch(ingresaPelicula(name, actores, argumento, genero, calidad, idioma, year, precio, countInStock, image));         
+      props.history.push('/')
   };
 
   useEffect(() => {
