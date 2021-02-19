@@ -24,7 +24,7 @@ import SellerRoute from './components/SellerRoute';
 import SellerScreen from './screens/SellerScreen';
 /* import SearchBox from './components/SearchBox'; */
 import SearchScreen from './screens/SearchScreen';
-import { listProductCategories } from './actions/productActions';
+import { listProductGeneros } from './actions/productActions';
 /* import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox'; */
 import MapScreen from './screens/MapScreen';
@@ -48,7 +48,7 @@ function App() {
     categories,
   } = productCategoryList; */
   useEffect(() => {
-    dispatch(listProductCategories());
+    dispatch(listProductGeneros());
   }, [dispatch]);
   return (
     <BrowserRouter>
@@ -194,17 +194,17 @@ function App() {
             exact
           ></Route>
           <Route
-            path="/search/category/:category"
+            path="/search/genero/:genero"
             component={SearchScreen}
             exact
           ></Route>
           <Route
-            path="/search/category/:category/name/:name"
+            path="/search/genero/:genero/name/:name"
             component={SearchScreen}
             exact
           ></Route>
           <Route
-            path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
+            path="/search/genero/:genero/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
             component={SearchScreen}
             exact
           ></Route>
@@ -244,11 +244,11 @@ function App() {
 
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
-        <footer>
+        {/* <footer>
           <div className="text-center">
             <h5>Copy Right - 2021</h5>
           </div>
-        </footer>
+        </footer> */}
      
     </BrowserRouter>
   );

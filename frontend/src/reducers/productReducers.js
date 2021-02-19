@@ -17,13 +17,17 @@ const {
   PRODUCT_DELETE_SUCCESS,
   PRODUCT_DELETE_FAIL,
   PRODUCT_DELETE_RESET,
-  PRODUCT_CATEGORY_LIST_REQUEST,
-  PRODUCT_CATEGORY_LIST_SUCCESS,
-  PRODUCT_CATEGORY_LIST_FAIL,
+  PRODUCT_GENERO_LIST_REQUEST,
+  PRODUCT_GENERO_LIST_SUCCESS,
+  PRODUCT_GENERO_LIST_FAIL,
   PRODUCT_REVIEW_CREATE_REQUEST,
   PRODUCT_REVIEW_CREATE_SUCCESS,
   PRODUCT_REVIEW_CREATE_FAIL,
   PRODUCT_REVIEW_CREATE_RESET,
+  PELICULA_REGISTER_REQUEST,
+  PELICULA_REGISTER_SUCCESS,
+  PELICULA_REGISTER_FAIL,
+  PELICULA_REGISTER_RESET,
 } = require('../constants/productConstants');
 
 export const productListReducer = (
@@ -47,16 +51,16 @@ export const productListReducer = (
   }
 };
 
-export const productCategoryListReducer = (
+export const productGeneroListReducer = (
   state = { loading: true, products: [] },
   action
 ) => {
   switch (action.type) {
-    case PRODUCT_CATEGORY_LIST_REQUEST:
+    case PRODUCT_GENERO_LIST_REQUEST:
       return { loading: true };
-    case PRODUCT_CATEGORY_LIST_SUCCESS:
-      return { loading: false, categories: action.payload };
-    case PRODUCT_CATEGORY_LIST_FAIL:
+    case PRODUCT_GENERO_LIST_SUCCESS:
+      return { loading: false, generos: action.payload };
+    case PRODUCT_GENERO_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;
@@ -126,6 +130,21 @@ export const productReviewCreateReducer = (state = {}, action) => {
     case PRODUCT_REVIEW_CREATE_FAIL:
       return { loading: false, error: action.payload };
     case PRODUCT_REVIEW_CREATE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const peliculaRegisterReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PELICULA_REGISTER_REQUEST:
+      return { loading: true };
+    case PELICULA_REGISTER_SUCCESS:
+      return { loading: false, success: true, pelicula: action.payload };
+    case PELICULA_REGISTER_FAIL:
+      return { loading: false, error: action.payload };
+    case PELICULA_REGISTER_RESET:
       return {};
     default:
       return state;

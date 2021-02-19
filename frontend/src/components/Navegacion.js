@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signout } from "../actions/userActions";
-import { listProductCategories } from "../actions/productActions";
+import { listProductGeneros } from "../actions/productActions";
 /* import SearchBox from "./SearchBox"; */
 
 export default function Navegacion() {
@@ -23,7 +23,7 @@ export default function Navegacion() {
     categories,
   } = productCategoryList; */
   useEffect(() => {
-    dispatch(listProductCategories());
+    dispatch(listProductGeneros());
   }, [dispatch]);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">

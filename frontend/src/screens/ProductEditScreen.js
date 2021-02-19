@@ -9,12 +9,12 @@ import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 export default function ProductEditScreen(props) {
   const productId = props.match.params.id;
   const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
+  const [precio, setPrecio] = useState('');
   const [image, setImage] = useState('');
-  const [category, setCategory] = useState('');
+  const [genero, setGenero] = useState('');
   const [countInStock, setCountInStock] = useState('');
-  const [brand, setBrand] = useState('');
-  const [description, setDescription] = useState('');
+  const [actores, setActores] = useState('');
+  const [argumento, setArgumento] = useState('');
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
@@ -36,12 +36,12 @@ export default function ProductEditScreen(props) {
       dispatch(detailsProduct(productId));
     } else {
       setName(product.name);
-      setPrice(product.price);
+      setPrecio(product.precio);
       setImage(product.image);
-      setCategory(product.category);
+      setGenero(product.genero);
       setCountInStock(product.countInStock);
-      setBrand(product.brand);
-      setDescription(product.description);
+      setActores(product.actores);
+      setArgumento(product.argumento);
     }
   }, [product, dispatch, productId, successUpdate, props.history]);
   const submitHandler = (e) => {
@@ -51,12 +51,12 @@ export default function ProductEditScreen(props) {
       updateProduct({
         _id: productId,
         name,
-        price,
+        precio,
         image,
-        category,
-        brand,
+        genero,
+        actores,
         countInStock,
-        description,
+        argumento,
       })
     );
   };
@@ -110,13 +110,13 @@ export default function ProductEditScreen(props) {
               ></input>
             </div>
             <div>
-              <label htmlFor="price">Price</label>
+              <label htmlFor="precio">Precio</label>
               <input
-                id="price"
+                id="precio"
                 type="text"
-                placeholder="Enter price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                placeholder="Enter precio"
+                value={precio}
+                onChange={(e) => setPrecio(e.target.value)}
               ></input>
             </div>
             <div>
@@ -143,23 +143,23 @@ export default function ProductEditScreen(props) {
               )}
             </div>
             <div>
-              <label htmlFor="category">Category</label>
+              <label htmlFor="genero">Genero</label>
               <input
-                id="category"
+                id="genero"
                 type="text"
-                placeholder="Enter category"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                placeholder="Enter genero"
+                value={genero}
+                onChange={(e) => setGenero(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="brand">Brand</label>
+              <label htmlFor="actores">Actores</label>
               <input
-                id="brand"
+                id="actores"
                 type="text"
-                placeholder="Enter brand"
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
+                placeholder="Ingrese Actores"
+                value={actores}
+                onChange={(e) => setActores(e.target.value)}
               ></input>
             </div>
             <div>
@@ -173,14 +173,14 @@ export default function ProductEditScreen(props) {
               ></input>
             </div>
             <div>
-              <label htmlFor="description">Description</label>
+              <label htmlFor="argumento">Argumento</label>
               <textarea
-                id="description"
+                id="argumento"
                 rows="3"
                 type="text"
-                placeholder="Enter description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Enter argumento"
+                value={argumento}
+                onChange={(e) => setArgumento(e.target.value)}
               ></textarea>
             </div>
             <div>

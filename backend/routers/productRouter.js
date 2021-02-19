@@ -13,7 +13,7 @@ productRouter.get(
     const pageSize = 3;
     const page = Number(req.query.pageNumber) || 1;
     const name = req.query.name || '';
-    const category = req.query.category || '';
+    const genero = req.query.genero || '';
     const seller = req.query.seller || '';
     const order = req.query.order || '';
     const min =
@@ -27,29 +27,29 @@ productRouter.get(
 
     const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
     const sellerFilter = seller ? { seller } : {};
-    const categoryFilter = category ? { category } : {};
-    const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
+    const generoFilter = genero ? { genero } : {};
+    const precioFilter = min && max ? { precio: { $gte: min, $lte: max } } : {};
     const ratingFilter = rating ? { rating: { $gte: rating } } : {};
     const sortOrder =
       order === 'lowest'
-        ? { price: 1 }
+        ? { precio: 1 }
         : order === 'highest'
-        ? { price: -1 }
+        ? { precio: -1 }
         : order === 'toprated'
         ? { rating: -1 }
         : { _id: -1 };
     const count = await Product.count({
       ...sellerFilter,
       ...nameFilter,
-      ...categoryFilter,
-      ...priceFilter,
+      ...generoFilter,
+      ...precioFilter,
       ...ratingFilter,
     });
     const products = await Product.find({
       ...sellerFilter,
       ...nameFilter,
-      ...categoryFilter,
-      ...priceFilter,
+      ...generoFilter,
+      ...precioFilter,
       ...ratingFilter,
     })
       .populate('seller', 'seller.name seller.logo')
@@ -61,10 +61,10 @@ productRouter.get(
 );
 
 productRouter.get(
-  '/categories',
+  '/generos',
   expressAsyncHandler(async (req, res) => {
-    const categories = await Product.find().distinct('category');
-    res.send(categories);
+    const generos = await Product.find().distinct('genero');
+    res.send(generos);
   })
 );
 
@@ -109,21 +109,25 @@ productRouter.post(
   isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     const product = new Product({
-      name: 'sample name ' + Date.now(),
+      name: req.body.name,
+      actores: req.body.actores,
+      argumento: req.body.argumento,
+      genero: req.body.genero,
+      calidad: req.body.calidad,
+      idioma: req.body.idioma,
+      year: req.body.year,
+      precio: req.body.precio,
+      countInStock: req.body.countInStock,
+      image: req.body.image,
       seller: req.user._id,
-      image: '/images/p1.jpg',
-      price: 0,
-      category: 'sample category',
-      brand: 'sample brand',
-      countInStock: 0,
       rating: 0,
-      numReviews: 0,
-      description: 'sample description',
+      numReviews: 0,      
     });
     const createdProduct = await product.save();
-    res.send({ message: 'Product Created', product: createdProduct });
+    res.send({ message: 'Pelicula Creada', product: createdProduct });
   })
 );
+
 productRouter.put(
   '/:id',
   isAuth,
@@ -133,12 +137,12 @@ productRouter.put(
     const product = await Product.findById(productId);
     if (product) {
       product.name = req.body.name;
-      product.price = req.body.price;
+      product.precio = req.body.precio;
       product.image = req.body.image;
-      product.category = req.body.category;
-      product.brand = req.body.brand;
+      product.genero = req.body.genero;
+      product.actores = req.body.actores;
       product.countInStock = req.body.countInStock;
-      product.description = req.body.description;
+      product.argumento = req.body.argumento;
       const updatedProduct = await product.save();
       res.send({ message: 'Product Updated', product: updatedProduct });
     } else {

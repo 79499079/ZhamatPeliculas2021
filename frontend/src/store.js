@@ -11,13 +11,14 @@ import {
   orderPayReducer,
 } from './reducers/orderReducers';
 import {
-  productCategoryListReducer,
+  productGeneroListReducer,
   productCreateReducer,
   productDeleteReducer,
   productDetailsReducer,
   productListReducer,
   productReviewCreateReducer,
   productUpdateReducer,
+  peliculaRegisterReducer,
 } from './reducers/productReducers';
 import {
   userAddressMapReducer,
@@ -69,9 +70,10 @@ const reducer = combineReducers({
   userList: userListReducer,
   userDelete: userDeleteReducer,
   userTopSellersList: userTopSellerListReducer,
-  productCategoryList: productCategoryListReducer,
+  productGeneroList: productGeneroListReducer,
   productReviewCreate: productReviewCreateReducer,
   userAddressMap: userAddressMapReducer,
+  peliculaRegister: peliculaRegisterReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

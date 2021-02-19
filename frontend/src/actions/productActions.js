@@ -15,19 +15,22 @@ import {
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_FAIL,
   PRODUCT_DELETE_SUCCESS,
-  PRODUCT_CATEGORY_LIST_SUCCESS,
-  PRODUCT_CATEGORY_LIST_REQUEST,
-  PRODUCT_CATEGORY_LIST_FAIL,
+  PRODUCT_GENERO_LIST_SUCCESS,
+  PRODUCT_GENERO_LIST_REQUEST,
+  PRODUCT_GENERO_LIST_FAIL,
   PRODUCT_REVIEW_CREATE_REQUEST,
   PRODUCT_REVIEW_CREATE_SUCCESS,
   PRODUCT_REVIEW_CREATE_FAIL,
+  PELICULA_REGISTER_FAIL,
+  PELICULA_REGISTER_SUCCESS,
+  PELICULA_REGISTER_REQUEST,
 } from '../constants/productConstants';
 
 export const listProducts = ({
   pageNumber = '',
   seller = '',
   name = '',
-  category = '',
+  genero = '',
   order = '',
   min = 0,
   max = 0,
@@ -38,7 +41,7 @@ export const listProducts = ({
   });
   try {
     const { data } = await Axios.get(
-      `/api/products?pageNumber=${pageNumber}&seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`
+      `/api/products?pageNumber=${pageNumber}&seller=${seller}&name=${name}&genero=${genero}&min=${min}&max=${max}&rating=${rating}&order=${order}`
     );
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
@@ -46,15 +49,15 @@ export const listProducts = ({
   }
 };
 
-export const listProductCategories = () => async (dispatch) => {
+export const listProductGeneros = () => async (dispatch) => {
   dispatch({
-    type: PRODUCT_CATEGORY_LIST_REQUEST,
+    type: PRODUCT_GENERO_LIST_REQUEST,
   });
   try {
-    const { data } = await Axios.get(`/api/products/categories`);
-    dispatch({ type: PRODUCT_CATEGORY_LIST_SUCCESS, payload: data });
+    const { data } = await Axios.get(`/api/products/generos`);
+    dispatch({ type: PRODUCT_GENERO_LIST_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: PRODUCT_CATEGORY_LIST_FAIL, payload: error.message });
+    dispatch({ type: PRODUCT_GENERO_LIST_FAIL, payload: error.message });
   }
 };
 
@@ -160,5 +163,26 @@ export const createReview = (productId, review) => async (
         ? error.response.data.message
         : error.message;
     dispatch({ type: PRODUCT_REVIEW_CREATE_FAIL, payload: message });
+  }
+};
+
+export const ingresaPelicula = (name, actores, argumento, genero, calidad, idioma, year, precio, countInStock, image) => async (dispatch, getState) => { 
+  dispatch({type: PELICULA_REGISTER_REQUEST, payload: {name, actores, argumento, genero, calidad, idioma, year, precio, countInStock, image} })  
+  try {
+    const {userSignin: { userInfo }} = getState(); 
+    const { data } = await Axios.post(`/api/products/`, {name, actores, argumento, genero, calidad, idioma, year, precio, countInStock, image}, {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    });
+    dispatch({ type: PELICULA_REGISTER_SUCCESS, payload: data});    
+  } catch (error) {
+    dispatch({
+      type: PELICULA_REGISTER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
 };

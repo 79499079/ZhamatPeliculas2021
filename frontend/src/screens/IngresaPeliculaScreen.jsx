@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-/* import { ingresaPelicula } from "../actions/peliculaActions"; */
+import { ingresaPelicula } from "../actions/productActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 
 export default function RegistraUserScreen(props) {
-  const [titulo, setTitulo] = useState("");
+  const [name, setName] = useState("");
   const [actores, setActores] = useState(""); 
   const [argumento, setArgumento] = useState("");
   const [genero, setGenero] = useState("");
@@ -13,27 +13,27 @@ export default function RegistraUserScreen(props) {
   const [idioma, setIdioma] = useState("");
   const [year, setYear] = useState("");  
   const [precio, setPrecio] = useState("");
-  const [cantStock, setCantStock] = useState("");
-  const [imagen, setImagen] = useState("");
+  const [countInStock, setCantStock] = useState("");
+  const [image, setImagen] = useState("");
   
- /*  const redirect = props.location.search
+  const redirect = props.location.search
     ? props.location.search.split("=")[1]
     : "/ingresaPelicula";
 
   const peliculaRegister = useSelector((state) => state.peliculaRegister);
-  const { pelicula, loading, error } = peliculaRegister; */
+  const { pelicula, loading, error } = peliculaRegister;
 
- /* const dispatch = useDispatch();     
+ const dispatch = useDispatch();   
   const submitHandler = (e) => {
     e.preventDefault();     
-      dispatch(ingresaPelicula(titulo, actores, argumento, genero, calidad, idioma, year,  precio, cantStock, imagen));         
-  }; */
+      dispatch(ingresaPelicula(name, actores, argumento, genero, calidad, idioma, year, precio, countInStock, image));         
+  };
 
-  /* useEffect(() => {
+  useEffect(() => {
     if (pelicula) {      
       props.history.push(redirect);      
     }
-  }, [props.history, redirect, pelicula]); */
+  }, [props.history, redirect, pelicula]);
   return (
     <div className="col-sm-11 col-md-6 col-lg-6 mx-auto">     
       <div className="card mb-4 text-center">
@@ -44,18 +44,18 @@ export default function RegistraUserScreen(props) {
           </h3>
         </div>
         <div className="card-body">
-          <form className="form" /* onSubmit={submitHandler} */>
+          <form className="form" onSubmit={submitHandler}>
             <div className="form-group">
-              <label className="form-check-label" htmlFor="titulo">
+              <label className="form-check-label" htmlFor="name">
                 Titulo
               </label>
               <input
                 type="text"
-                id="titulo"
+                id="name"
                 className="form-control"
                 placeholder="Ingrese Título"
                 required
-                onChange={(e) => setTitulo(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -179,8 +179,8 @@ export default function RegistraUserScreen(props) {
               Adicionar
             </button>            
           </form>
-          {/* {loading && <LoadingBox></LoadingBox>}
-              {error && <MessageBox variant="danger">{error}</MessageBox>} */}
+          {loading && <LoadingBox></LoadingBox>}
+              {error && <MessageBox variant="danger">{error}</MessageBox>}
         </div>
       </div>
     </div>

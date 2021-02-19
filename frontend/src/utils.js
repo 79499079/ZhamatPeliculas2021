@@ -1,4 +1,4 @@
-export const prices = [
+export const precios = [
   {
     name: 'Any',
     min: 0,

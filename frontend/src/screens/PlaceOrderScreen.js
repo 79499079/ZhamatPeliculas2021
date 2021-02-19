@@ -14,13 +14,13 @@ export default function PlaceOrderScreen(props) {
   }
   const orderCreate = useSelector((state) => state.orderCreate);
   const { loading, success, error, order } = orderCreate;
-  const toPrice = (num) => Number(num.toFixed(2)); // 5.123 => "5.12" => 5.12
-  cart.itemsPrice = toPrice(
-    cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
+  const toPrecio = (num) => Number(num.toFixed(2)); // 5.123 => "5.12" => 5.12
+  cart.itemsPrecio = toPrecio(
+    cart.cartItems.reduce((a, c) => a + c.qty * c.precio, 0)
   );
-  cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
-  cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
-  cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
+  cart.shippingPrecio = cart.itemsPrecio > 100 ? toPrecio(0) : toPrecio(10);
+  cart.taxPrecio = toPrecio(0.15 * cart.itemsPrecio);
+  cart.totalPrecio = cart.itemsPrecio + cart.shippingPrecio + cart.taxPrecio;
   const dispatch = useDispatch();
   const placeOrderHandler = () => {
     dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
@@ -77,7 +77,7 @@ export default function PlaceOrderScreen(props) {
                         </div>
 
                         <div>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x ${item.precio} = ${item.qty * item.precio}
                         </div>
                       </div>
                     </li>
@@ -96,19 +96,19 @@ export default function PlaceOrderScreen(props) {
               <li>
                 <div className="row">
                   <div>Items</div>
-                  <div>${cart.itemsPrice.toFixed(2)}</div>
+                  <div>${cart.itemsPrecio.toFixed(2)}</div>
                 </div>
               </li>
               <li>
                 <div className="row">
                   <div>Shipping</div>
-                  <div>${cart.shippingPrice.toFixed(2)}</div>
+                  <div>${cart.shippingPrecio.toFixed(2)}</div>
                 </div>
               </li>
               <li>
                 <div className="row">
                   <div>Tax</div>
-                  <div>${cart.taxPrice.toFixed(2)}</div>
+                  <div>${cart.taxPrecio.toFixed(2)}</div>
                 </div>
               </li>
               <li>
@@ -117,7 +117,7 @@ export default function PlaceOrderScreen(props) {
                     <strong> Order Total</strong>
                   </div>
                   <div>
-                    <strong>${cart.totalPrice.toFixed(2)}</strong>
+                    <strong>${cart.totalPrecio.toFixed(2)}</strong>
                   </div>
                 </div>
               </li>

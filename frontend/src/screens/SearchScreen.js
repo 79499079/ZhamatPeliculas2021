@@ -6,12 +6,12 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Product from '../components/Product';
 import Rating from '../components/Rating';
-import { prices, ratings } from '../utils';
+import { precios, ratings } from '../utils';
 
 export default function SearchScreen(props) {
   const {
     name = 'all',
-    category = 'all',
+    genero = 'all',
     min = 0,
     max = 0,
     rating = 0,
@@ -22,35 +22,35 @@ export default function SearchScreen(props) {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
-  const productCategoryList = useSelector((state) => state.productCategoryList);
+  const productGeneroList = useSelector((state) => state.productGeneroList);
   const {
-    loading: loadingCategories,
-    error: errorCategories,
-    categories,
-  } = productCategoryList;
+    loading: loadingGeneros,
+    error: errorGeneros,
+    generos,
+  } = productGeneroList;
   useEffect(() => {
     dispatch(
       listProducts({
         pageNumber,
         name: name !== 'all' ? name : '',
-        category: category !== 'all' ? category : '',
+        genero: genero !== 'all' ? genero : '',
         min,
         max,
         rating,
         order,
       })
     );
-  }, [category, dispatch, max, min, name, order, rating, pageNumber]);
+  }, [genero, dispatch, max, min, name, order, rating, pageNumber]);
 
   const getFilterUrl = (filter) => {
     const filterPage = filter.page || pageNumber;
-    const filterCategory = filter.category || category;
+    const filterGenero = filter.genero || genero;
     const filterName = filter.name || name;
     const filterRating = filter.rating || rating;
     const sortOrder = filter.order || order;
     const filterMin = filter.min ? filter.min : filter.min === 0 ? 0 : min;
     const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
-    return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
+    return `/search/genero/${filterGenero}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
   };
   return (
     <div>
@@ -71,8 +71,8 @@ export default function SearchScreen(props) {
             }}
           >
             <option value="newest">Newest Arrivals</option>
-            <option value="lowest">Price: Low to High</option>
-            <option value="highest">Price: High to Low</option>
+            <option value="lowest">Precio: Low to High</option>
+            <option value="highest">Precio: High to Low</option>
             <option value="toprated">Avg. Customer Reviews</option>
           </select>
         </div>
@@ -81,25 +81,25 @@ export default function SearchScreen(props) {
         <div className="col-1">
           <h3>Department</h3>
           <div>
-            {loadingCategories ? (
+            {loadingGeneros ? (
               <LoadingBox></LoadingBox>
-            ) : errorCategories ? (
-              <MessageBox variant="danger">{errorCategories}</MessageBox>
+            ) : errorGeneros ? (
+              <MessageBox variant="danger">{errorGeneros}</MessageBox>
             ) : (
               <ul>
                 <li>
                   <Link
-                    className={'all' === category ? 'active' : ''}
-                    to={getFilterUrl({ category: 'all' })}
+                    className={'all' === genero ? 'active' : ''}
+                    to={getFilterUrl({ genero: 'all' })}
                   >
                     Any
                   </Link>
                 </li>
-                {categories.map((c) => (
+                {generos.map((c) => (
                   <li key={c}>
                     <Link
-                      className={c === category ? 'active' : ''}
-                      to={getFilterUrl({ category: c })}
+                      className={c === genero ? 'active' : ''}
+                      to={getFilterUrl({ genero: c })}
                     >
                       {c}
                     </Link>
@@ -109,9 +109,9 @@ export default function SearchScreen(props) {
             )}
           </div>
           <div>
-            <h3>Price</h3>
+            <h3>Precio</h3>
             <ul>
-              {prices.map((p) => (
+              {precios.map((p) => (
                 <li key={p.name}>
                   <Link
                     to={getFilterUrl({ min: p.min, max: p.max })}
