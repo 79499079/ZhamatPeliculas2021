@@ -133,21 +133,29 @@ export default function ProductScreen(props) {
               </div>
               <div className="card card-body">                
                 <div>
-                  {product.reviews.length !== 0 && (
+                  {product.reviews.length === 0 ? (
                     <p className="text-center">
-                      <h4>Comentarios</h4>
+                      <h5 className="amarillo">Aún no tiene Comentarios</h5>
                     </p>
-                  )}
-                  {product.reviews.map((review) => (
-                    <div key={review._id}>
-                      <div className="row justify-content-between">
-                        <strong>{review.name}</strong>{" "}
-                        <Rating rating={review.rating} caption=" "></Rating>
-                        <p>{review.createdAt.substring(0, 10)}</p>
+                  ) : (
+                    <>
+                    <p className="text-center">
+                    <h5 className="amarillo">Comentarios</h5>
+                    </p>                    
+                    {product.reviews.map((review) => (
+                      <div key={review._id}>
+                        <div className="row justify-content-between">
+                          <strong>{review.name}</strong>{" "}
+                          <Rating rating={review.rating} caption=" "></Rating>
+                          <p>{review.createdAt.substring(0, 10)}</p>
+                        </div>
+                        <p>{review.comment}</p>
                       </div>
-                      <p>{review.comment}</p>
-                    </div>
-                  ))}
+                    ))}
+                    </>
+                  )                
+                }
+                  
                 </div>
               </div>
             </div>
@@ -197,7 +205,7 @@ export default function ProductScreen(props) {
                           id="rating"
                           value={rating}
                           onChange={(e) => setRating(e.target.value)}
-                          readonly
+                          readOnly
                         >
                           <option value="">Seleccione...</option>
                           <option value="1">1- Muy Mala</option>

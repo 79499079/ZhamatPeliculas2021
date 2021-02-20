@@ -19,6 +19,7 @@ import {
   productReviewCreateReducer,
   productUpdateReducer,
   peliculaRegisterReducer,
+  productListaReducer,
 } from './reducers/productReducers';
 import {
   userAddressMapReducer,
@@ -74,7 +75,7 @@ const reducer = combineReducers({
   productReviewCreate: productReviewCreateReducer,
   userAddressMap: userAddressMapReducer,
   peliculaRegister: peliculaRegisterReducer,
-  productLista: productListReducer
+  productLista: productListaReducer
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

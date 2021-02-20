@@ -28,6 +28,9 @@ const {
   PELICULA_REGISTER_SUCCESS,
   PELICULA_REGISTER_FAIL,
   PELICULA_REGISTER_RESET,
+  PRODUCT_LISTA_REQUEST,
+  PRODUCT_LISTA_SUCCESS,
+  PRODUCT_LISTA_FAIL,
 } = require('../constants/productConstants');
 
 export const productListReducer = (
@@ -45,6 +48,27 @@ export const productListReducer = (
         page: action.payload.page,
       };
     case PRODUCT_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const productListaReducer = (
+  state = { loading: true, products: [] },
+  action
+) => {
+  switch (action.type) {
+    case PRODUCT_LISTA_REQUEST:
+      return { loading: true };
+    case PRODUCT_LISTA_SUCCESS:
+      return {
+        loading: false,
+        products: action.payload.products,
+        pages: action.payload.pages,
+        page: action.payload.page,
+      };
+    case PRODUCT_LISTA_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

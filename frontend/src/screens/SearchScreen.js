@@ -5,8 +5,8 @@ import { listProducts } from "../actions/productActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Product from "../components/Product";
-import Rating from "../components/Rating";
-import { precios, ratings } from "../utils";
+/* import Rating from "../components/Rating";
+import { precios, ratings } from "../utils"; */
 
 export default function SearchScreen(props) {
   const {
@@ -22,12 +22,12 @@ export default function SearchScreen(props) {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
-  const productGeneroList = useSelector((state) => state.productGeneroList);
+ /*  const productGeneroList = useSelector((state) => state.productGeneroList);
   const {
     loading: loadingGeneros,
     error: errorGeneros,
     generos,
-  } = productGeneroList;
+  } = productGeneroList; */
   useEffect(() => {
     dispatch(
       listProducts({

@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
+/* import { Carousel } from "react-responsive-carousel"; */
 import Product from "../components/Product";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../actions/productActions";
-import { listTopSellers } from "../actions/userActions";
+import { listaProducts, listProducts } from "../actions/productActions";
+/* import { listTopSellers } from "../actions/userActions"; */
 import { Link, Route, useParams } from "react-router-dom";
 import SearchBox from "../components/SearchBox";
 
@@ -26,7 +26,7 @@ export default function HomeScreen(props) {
   useEffect(() => {
     dispatch(listProducts({}));    
     dispatch(
-      listProducts({ seller: sellerMode ? userInfo._id : "", pageNumber })
+      listaProducts({ seller: sellerMode ? userInfo._id : "", pageNumber })
     );
   }, [dispatch, sellerMode, pageNumber, userInfo._id,]);
   return (

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import {
-  createProduct,
+  /* createProduct, */
   deleteProduct,
   listProducts,
 } from "../actions/productActions";
@@ -64,9 +64,9 @@ export default function ProductListScreen(props) {
       dispatch(deleteProduct(product._id));
     }
   };
-  const createHandler = () => {
+ /*  const createHandler = () => {
     dispatch(createProduct());
-  };
+  }; */
   return (
     <div className="Container">
       <div className="row">
