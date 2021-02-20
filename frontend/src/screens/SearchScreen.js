@@ -89,23 +89,24 @@ export default function SearchScreen(props) {
           ) : (
             <>
               {products.length === 0 && (
-                <MessageBox>No Product Found</MessageBox>
+                <MessageBox>No existe Película</MessageBox>
               )}
               <div className="row">
-                
-                  {products.map((product) => (
-                    <Product key={product._id} product={product}></Product>
-                  ))}
-                
+                {products.map((product) => (
+                  <Product key={product._id} product={product}></Product>
+                ))}
               </div>
-              <div>
+              <div className="text-center pagina">
+                Páginas{" "}
                 {[...Array(pages).keys()].map((x) => (
                   <Link
                     className={x + 1 === page ? "active" : ""}
                     key={x + 1}
                     to={getFilterUrl({ page: x + 1 })}
                   >
-                    {x + 1}
+                    <span className="badge">
+                      <h5 className="blanco">{x + 1}</h5>
+                    </span>
                   </Link>
                 ))}
               </div>
