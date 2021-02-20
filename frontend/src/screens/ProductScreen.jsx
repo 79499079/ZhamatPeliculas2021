@@ -134,14 +134,10 @@ export default function ProductScreen(props) {
               <div className="card card-body">                
                 <div>
                   {product.reviews.length === 0 ? (
-                    <p className="text-center">
-                      <h5 className="amarillo">Aún no tiene Comentarios</h5>
-                    </p>
+                      <h5 className="text-center amarillo">Aún no tiene Comentarios</h5>
                   ) : (
                     <>
-                    <p className="text-center">
-                    <h5 className="amarillo">Comentarios</h5>
-                    </p>                    
+                    <h5 className="text-center amarillo">Comentarios</h5>
                     {product.reviews.map((review) => (
                       <div key={review._id}>
                         <div className="row justify-content-between">
