@@ -24,20 +24,12 @@ export default function Product(props) {
             />
           </Link>
           <div className="descripcion p-4">
-            <p>
-            Calidad: {product.calidad}
-            </p>
-            <p>
-            Idioma: {product.idioma}
-            </p>
-            <p>
-            Año: {product.year}
-            </p>
-            {/* <p>
-            Argumento: {product.argumento}
-            </p> */}
+            <p>Calidad: {product.calidad}</p>
+            <p>Idioma: {product.idioma}</p>
+            <p>Año: {product.year}</p>
+            <textarea rows="6" cols="19" className="texto" defaultValue={product.argumento}/>              
           </div>
-        </div>        
+        </div>
       </div>
     </div>
   );
