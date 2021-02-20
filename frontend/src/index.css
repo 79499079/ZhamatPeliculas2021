@@ -453,3 +453,21 @@ footer {
   font-size: 0.7rem;
 }
 
+.descripcion {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  padding: 10px;
+  margin: 50px;
+  word-wrap: break-word;
+}
+
+#imglista:hover {  
+  opacity: 0.08;
+  -webkit-transition: opacity 500ms;
+  -moz-transition: opacity 500ms;
+  -o-transition: opacity 500ms;
+  -ms-transition: opacity 500ms;
+  transition: opacity 500ms;
+}
+

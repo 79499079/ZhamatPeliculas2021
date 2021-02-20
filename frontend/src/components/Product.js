@@ -24,12 +24,18 @@ export default function Product(props) {
             />
           </Link>
           <div className="descripcion p-4">
+            <p>
             Calidad: {product.calidad}
-            <br />
+            </p>
+            <p>
             Idioma: {product.idioma}
-            <br />
+            </p>
+            <p>
             Año: {product.year}
-            <br />
+            </p>
+            {/* <p>
+            Argumento: {product.argumento}
+            </p> */}
           </div>
         </div>        
       </div>
