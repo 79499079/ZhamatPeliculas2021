@@ -60,7 +60,7 @@ export default function Navegacion() {
                   alt="Carro Compras"
                 />
                 {cartItems.length > 0 && (
-                  <span className="badge">{cartItems.length}</span>
+                  <span className="badge badgecar">{cartItems.length}</span>
                 )}
               </Link>
             </li>

@@ -425,3 +425,10 @@ footer {
 .rating span {
   color: #f0c040;
 }
+
+.badgecar {  
+  width: 1.5rem;  
+  background-color: #f02020;
+  color: #ffffff;
+  border-radius: 50%;
+}
