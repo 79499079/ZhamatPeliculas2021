@@ -137,36 +137,62 @@ export default function PlaceOrderScreen(props) {
               </div>
             </li>
             <li>
-              <div className="card card-body">
-                <h4 className="text-center">Péliculas Solicitadas</h4>
-                <ul>
-                  {cart.cartItems.map((item) => (
-                    <li key={item.product}>
-                      <div className="row row-cols-3">
-                        <div className="col">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="small"
-                          ></img>
-                        </div>
-                        <div className="col">
-                          <Link
-                            className="link"
-                            to={`/product/${item.product}`}
-                          >
-                            {item.name}
-                          </Link>
-                        </div>
-
-                        <div className="col">
-                          {item.qty} x ${item.precio} = $
-                          {item.qty * item.precio}
-                        </div>
+              <div className="card">
+                <div className="card-title">
+                  <div>
+                    <h4 className="text-center">Películas Solicitadas</h4>
+                  </div>
+                  <div className="container">
+                    <div className="row row-cols-2 mt-2">
+                      <div className="col ml-4">
+                        <Link to="/">
+                          <i className="fa fa-plus">
+                            {" "}
+                            <h5>Adicionar</h5>
+                          </i>
+                        </Link>
                       </div>
-                    </li>
-                  ))}
-                </ul>
+                      <div className="col text-right mr-4">
+                        <Link to="/cart">
+                          <i className="fa fa-exchange-alt">
+                            {" "}
+                            <h5>Modificar</h5>
+                          </i>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="card-body">
+                  <ul>
+                    {cart.cartItems.map((item) => (
+                      <li key={item.product}>
+                        <div className="row row-cols-3">
+                          <div className="col">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="small"
+                            ></img>
+                          </div>
+                          <div className="col">
+                            <Link
+                              className="link"
+                              to={`/product/${item.product}`}
+                            >
+                              {item.name}
+                            </Link>
+                          </div>
+
+                          <div className="col">
+                            {item.qty} x ${item.precio} = $
+                            {item.qty * item.precio}
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </li>
           </ul>

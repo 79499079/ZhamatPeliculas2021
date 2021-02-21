@@ -131,27 +131,43 @@ export default function CartScreen(props) {
                 <h4 className="text-center">Películas Solicitadas</h4>
                 <ul>
                   {cart.cartItems.map((item) => (
-                    <li key={item.product}>
-                      <div className="row row-cols-3">
-                        <div className="col">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="small"
-                          ></img>
-                        </div>
-                        <div className="col">
-                          <Link className="link" to={`/product/${item.product}`}>
-                            {item.name}
-                          </Link>
-                        </div>
+                    <>
+                      <li key={item.product}>
+                        <div className="row row-cols-4">
+                          <div className="col">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="small"
+                            ></img>
+                          </div>
+                          <div className="col">
+                            <Link
+                              className="link"
+                              to={`/product/${item.product}`}
+                            >
+                              {item.name}
+                            </Link>
+                          </div>
 
-                        <div className="col">
-                          {item.qty} x ${item.precio} = $
-                          {item.qty * item.precio}
+                          <div className="col">
+                            {item.qty} x ${item.precio} = $
+                            {item.qty * item.precio}
+                          </div>
+                          <div className="col">
+                            <button
+                              type="button"
+                              className="btn btn-danger btn-block mt-1"
+                              onClick={() =>
+                                removeFromCartHandler(item.product)
+                              }
+                            >
+                              Borrar
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    </li>
+                      </li>
+                    </>
                   ))}
                 </ul>
               </div>

@@ -119,7 +119,7 @@ export default function OrderScreen(props) {
               <li>
                 <div className="row row-cols-2">
                   <div className="col">
-                    <strong> TOTAL PAGADO</strong>
+                    <strong> PAGO TOTAL</strong>
                   </div>
                   <div className="col text-right">
                     <strong>${order.totalPrecio.toFixed(0)}</strong>
@@ -189,13 +189,13 @@ export default function OrderScreen(props) {
             </li>
             <li>
               <div className="card card-body">
-              <h4 className="text-center">Datos Envio</h4>
+              <h4 className="text-center">Método de Pago</h4>
                 <p>
                   <strong>Método:</strong> {order.paymentMethod}
                 </p>
                 {order.isPaid ? (
                   <MessageBox variant="success">
-                    Paid at {order.paidAt}
+                    Fecha Pago {order.paidAt}
                   </MessageBox>
                 ) : (
                   <MessageBox variant="danger"><i className="fa fa-hand-holding-usd"> {" "}No Pagado</i></MessageBox>
@@ -204,7 +204,7 @@ export default function OrderScreen(props) {
             </li>
             <li>
               <div className="card card-body">
-                <h2>Order Items</h2>
+                <h4 className="text-center">Películas Ordenadas</h4>
                 <ul>
                 {order.orderItems.map((item) => (
                     <li key={item.product}>
