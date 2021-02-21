@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { signin } from '../actions/userActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { signin } from "../actions/userActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
 
 export default function SigninScreen(props) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const redirect = props.location.search
-    ? props.location.search.split('=')[1]
-    : '/';
+    ? props.location.search.split("=")[1]
+    : "/";
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo, loading, error } = userSignin;
@@ -28,48 +28,56 @@ export default function SigninScreen(props) {
   }, [props.history, redirect, userInfo]);
   return (
     <div>
-      <form className="form" onSubmit={submitHandler}>
-        <div>
-          <h1>Sign In</h1>
-        </div>
-        {loading && <LoadingBox></LoadingBox>}
-        {error && <MessageBox variant="danger">{error}</MessageBox>}
-        <div>
-          <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter email"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <label />
-          <button className="primary" type="submit">
-            Sign In
-          </button>
-        </div>
-        <div>
-          <label />
-          <div>
-            New customer?{' '}
-            <Link to={`/register?redirect=${redirect}`}>
-              Create your account
-            </Link>
+      <div className="container">
+        <div className="col-sm-12 col-md-8 col-lg-6 mx-auto">
+          <div className="card">
+            <form onSubmit={submitHandler}>
+              <div className="card-title">
+                <div>
+                  <h3 className="text-center">Iniciar Sesión</h3>
+                </div>
+              </div>
+              <div className="card-body">
+                {loading && <LoadingBox></LoadingBox>}
+                {error && <MessageBox variant="danger">{error}</MessageBox>}
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    className="form-control"
+                    type="email"
+                    id="email"
+                    placeholder="Enter email"
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                  ></input>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    className="form-control"
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
+                  ></input>
+                </div>
+                <div className="form-group">
+                  <button className="btn btn-primary btn-block" type="submit">
+                    Inicio
+                  </button>
+                </div>
+                <small className="text-center">
+                ¿No tienes una cuenta?{" "}
+                  <Link to={`/register?redirect=${redirect}`}>
+                  {" "}Crea tu Cuenta
+                  </Link>
+                </small>
+              </div>
+            </form>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
