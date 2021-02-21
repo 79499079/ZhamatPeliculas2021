@@ -33,6 +33,7 @@ const orderSchema = new mongoose.Schema(
     itemsPrecio: { type: Number, required: true },
     shippingPrecio: { type: Number, required: true },
     taxPrecio: { type: Number, required: true },
+    descuento: { type: Number, required: true },
     totalPrecio: { type: Number, required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     seller: { type: mongoose.Schema.Types.ObjectID, ref: 'User' },

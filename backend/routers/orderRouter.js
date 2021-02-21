@@ -43,6 +43,7 @@ orderRouter.post(
         itemsPrecio: req.body.itemsPrecio,
         shippingPrecio: req.body.shippingPrecio,
         taxPrecio: req.body.taxPrecio,
+        descuento: req.body.descuento,
         totalPrecio: req.body.totalPrecio,
         user: req.user._id,
       });

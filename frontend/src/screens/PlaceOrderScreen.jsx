@@ -104,7 +104,7 @@ export default function PlaceOrderScreen(props) {
                 <i src="" className="fa fa-cart-arrow-down">
                   Realizar Pedido
                 </i>
-              </button>              
+              </button>
               {loading && <LoadingBox></LoadingBox>}
               {error && <MessageBox variant="danger">{error}</MessageBox>}
             </ul>
@@ -115,44 +115,51 @@ export default function PlaceOrderScreen(props) {
           <ul>
             <li>
               <div className="card card-body">
-                <h2>Shipping</h2>
+                <h4 className="text-center">Envio</h4>
                 <p>
-                  <strong>Name:</strong> {cart.shippingAddress.fullName} <br />
-                  <strong>Address: </strong> {cart.shippingAddress.address},
-                  {cart.shippingAddress.city}, {cart.shippingAddress.postalCode}
-                  ,{cart.shippingAddress.country}
+                  <strong>Nombre:</strong> {cart.shippingAddress.fullName}{" "}
+                  <br />
+                  <strong>Dirección: </strong> {cart.shippingAddress.address}
+                  <br />
+                  <strong>Barrio: </strong> {cart.shippingAddress.barrio}
+                  <br />
+                  <strong>Whatsapp: </strong>
+                  {cart.shippingAddress.whatsapp}
                 </p>
               </div>
             </li>
             <li>
               <div className="card card-body">
-                <h2>Payment</h2>
+                <h4 className="text-center">Pago</h4>
                 <p>
-                  <strong>Method:</strong> {cart.paymentMethod}
+                  <strong>Método:</strong> {cart.paymentMethod}
                 </p>
               </div>
             </li>
             <li>
               <div className="card card-body">
-                <h2>Order Items</h2>
+                <h4 className="text-center">Péliculas Solicitadas</h4>
                 <ul>
                   {cart.cartItems.map((item) => (
                     <li key={item.product}>
-                      <div className="row">
-                        <div>
+                      <div className="row row-cols-3">
+                        <div className="col">
                           <img
                             src={item.image}
                             alt={item.name}
                             className="small"
                           ></img>
                         </div>
-                        <div className="min-30">
-                          <Link to={`/product/${item.product}`}>
+                        <div className="col">
+                          <Link
+                            className="link"
+                            to={`/product/${item.product}`}
+                          >
                             {item.name}
                           </Link>
                         </div>
 
-                        <div>
+                        <div className="col">
                           {item.qty} x ${item.precio} = $
                           {item.qty * item.precio}
                         </div>

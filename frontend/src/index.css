@@ -479,3 +479,25 @@ footer {
   color: white;
   background: transparent;
 }
+
+.small {
+  min-width: 4rem;
+  max-width: 4rem;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 2px;  
+}
+
+.link{ 
+  color: white;
+}
+
+.link:hover{
+  color: #b2b5d3;
+}
+
+.underline{
+  border: 1px solid white;
+  margin-top: 5px;
+}

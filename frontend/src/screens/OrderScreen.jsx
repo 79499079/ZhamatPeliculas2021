@@ -76,97 +76,44 @@ export default function OrderScreen(props) {
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
-    <div>
-      <h1>Order {order._id}</h1>
+    <div className="container">
+      <h4 className="text-center underline">Orden Ref: {order._id}</h4>
       <div className="row top">
-        <div className="col-2">
-          <ul>
-            <li>
-              <div className="card card-body">
-                <h2>Shippring</h2>
-                <p>
-                  <strong>Name:</strong> {order.shippingAddress.fullName} <br />
-                  <strong>Address: </strong> {order.shippingAddress.address},
-                  {order.shippingAddress.barrio},{' '}                 
-                  {order.shippingAddress.whatsapp}
-                </p>
-                {order.isDelivered ? (
-                  <MessageBox variant="success">
-                    Delivered at {order.deliveredAt}
-                  </MessageBox>
-                ) : (
-                  <MessageBox variant="danger">Not Delivered</MessageBox>
-                )}
-              </div>
-            </li>
-            <li>
-              <div className="card card-body">
-                <h2>Payment</h2>
-                <p>
-                  <strong>Method:</strong> {order.paymentMethod}
-                </p>
-                {order.isPaid ? (
-                  <MessageBox variant="success">
-                    Paid at {order.paidAt}
-                  </MessageBox>
-                ) : (
-                  <MessageBox variant="danger">Not Paid</MessageBox>
-                )}
-              </div>
-            </li>
-            <li>
-              <div className="card card-body">
-                <h2>Order Items</h2>
-                <ul>
-                  {order.orderItems.map((item) => (
-                    <li key={item.product}>
-                      <div className="row">
-                        <div>
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="small"
-                          ></img>
-                        </div>
-                        <div className="min-30">
-                          <Link to={`/product/${item.product}`}>
-                            {item.name}
-                          </Link>
-                        </div>
 
-                        <div>
-                          {item.qty} x ${item.precio} = ${item.qty * item.precio}
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div className="col-1">
+      <div className="col-sm-12 col-md-5 col-lg-5">
           <div className="card card-body">
             <ul>
-              <li>
-                <h2>Order Summary</h2>
+            <li>
+                <h4 className="text-center">Resumen de Pago</h4>
               </li>
               <li>
-                <div className="row">
-                  <div>Items</div>
-                  <div>${order.itemsPrecio.toFixed(2)}</div>
+                <div className="row row-cols-2">
+                  <div className="col">Compra</div>
+                  <div className="col text-right">
+                    ${order.itemsPrecio.toFixed(0)}
+                  </div>
                 </div>
               </li>
               <li>
-                <div className="row">
-                  <div>Shipping</div>
-                  <div>${order.shippingPrecio.toFixed(2)}</div>
+                <div className="row row-cols-2">
+                  <div className="col">Envio</div>
+                  <div className="col text-right">
+                    ${order.shippingPrecio.toFixed(0)}
+                  </div>
                 </div>
               </li>
               <li>
-                <div className="row">
-                  <div>Tax</div>
-                  <div>${order.taxPrecio.toFixed(2)}</div>
+                <div className="row row-cols-2">
+                  <div className="col">IVA</div>
+                  <div className="col text-right">${order.taxPrecio.toFixed(0)}</div>
+                </div>
+              </li>
+              <li>
+                <div className="row row-cols-2">
+                  <div className="col">Descuento</div>
+                  <div className="col text-right">
+                    ${order.descuento.toFixed(0)}
+                  </div>
                 </div>
               </li>
               <li>
@@ -216,6 +163,80 @@ export default function OrderScreen(props) {
             </ul>
           </div>
         </div>
+
+
+      <div className="col-sm-12 col-md-7 col-lg-7">
+          <ul>
+            <li>
+              <div className="card card-body">
+                <h4 className="text-center">Datos Envio</h4>
+                <p>
+                  <strong>Nombre:</strong> {order.shippingAddress.fullName} <br />
+                  <strong>Dirección: </strong> {order.shippingAddress.address}
+                  <br/>
+                  <strong>Barrio: </strong> {order.shippingAddress.barrio}
+                  <br/>
+                  <strong>Whatsapp: </strong>{order.shippingAddress.whatsapp}
+                </p>
+                {order.isDelivered ? (
+                  <MessageBox variant="success">
+                    Delivered at {order.deliveredAt}
+                  </MessageBox>
+                ) : (
+                  <MessageBox variant="danger">Not Delivered</MessageBox>
+                )}
+              </div>
+            </li>
+            <li>
+              <div className="card card-body">
+              <h4 className="text-center">Datos Envio</h4>
+                <p>
+                  <strong>Método:</strong> {order.paymentMethod}
+                </p>
+                {order.isPaid ? (
+                  <MessageBox variant="success">
+                    Paid at {order.paidAt}
+                  </MessageBox>
+                ) : (
+                  <MessageBox variant="danger">Not Paid</MessageBox>
+                )}
+              </div>
+            </li>
+            <li>
+              <div className="card card-body">
+                <h2>Order Items</h2>
+                <ul>
+                {order.orderItems.map((item) => (
+                    <li key={item.product}>
+                      <div className="row row-cols-3">
+                        <div className="col">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="small"
+                          ></img>
+                        </div>
+                        <div className="col">
+                          <Link className="link" to={`/product/${item.product}`}>
+                            {item.name}
+                          </Link>
+                        </div>
+
+                        <div className="col">
+                          {item.qty} x ${item.precio} = $
+                          {item.qty * item.precio}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>   
+        
+
+
       </div>
     </div>
   );

@@ -45,7 +45,7 @@ export default function ProductScreen(props) {
         createReview(productId, { rating, comment, name: userInfo.name })
       );
     } else {
-      alert("Please enter comment and rating");
+      alert("Por favor ingrese un Rating y Comentario");
     }
   };
   return (
