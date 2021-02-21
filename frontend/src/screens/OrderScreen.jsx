@@ -117,12 +117,12 @@ export default function OrderScreen(props) {
                 </div>
               </li>
               <li>
-                <div className="row">
-                  <div>
-                    <strong> Order Total</strong>
+                <div className="row row-cols-2">
+                  <div className="col">
+                    <strong> TOTAL PAGADO</strong>
                   </div>
-                  <div>
-                    <strong>${order.totalPrecio.toFixed(2)}</strong>
+                  <div className="col text-right">
+                    <strong>${order.totalPrecio.toFixed(0)}</strong>
                   </div>
                 </div>
               </li>
@@ -183,7 +183,7 @@ export default function OrderScreen(props) {
                     Delivered at {order.deliveredAt}
                   </MessageBox>
                 ) : (
-                  <MessageBox variant="danger">Not Delivered</MessageBox>
+                  <MessageBox variant="danger"><i className="fa fa-shipping-fast"> {" "}No Enviado</i></MessageBox>
                 )}
               </div>
             </li>
@@ -198,7 +198,7 @@ export default function OrderScreen(props) {
                     Paid at {order.paidAt}
                   </MessageBox>
                 ) : (
-                  <MessageBox variant="danger">Not Paid</MessageBox>
+                  <MessageBox variant="danger"><i className="fa fa-hand-holding-usd"> {" "}No Pagado</i></MessageBox>
                 )}
               </div>
             </li>
